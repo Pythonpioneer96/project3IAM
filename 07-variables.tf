@@ -18,11 +18,6 @@ variable "group_policies" {
   type        = map(list(string))
 }
 
-variable "standard_policy_actions" {
-  description = "List of actions for the standard policy"
-  type        = list(string)
-  default     = ["*"] 
-}
 
 variable "mfa_enabled_groups" {
   description = "List of groups that require MFA"
