@@ -1,18 +1,21 @@
-data "aws_iam_policy_document" "standard_policy" {
-  statement {
-    effect = "Allow"
+# For each group, create a policy document
+data "aws_iam_policy_document" "group_policies" {
+  for_each = var.group_policies
 
-    actions = var.standard_policy_actions
+  statement {
+    effect    = "Allow"
+    actions   = each.value
     resources = ["*"]
   }
 }
 
-resource "aws_iam_group_policy" "standard_policy" {
+resource "aws_iam_group_policy" "group_specific_policy" {
   for_each = var.group_policies
   name     = "${each.key}-policy"
   group    = aws_iam_group.group[each.key].name
-  policy   = data.aws_iam_policy_document.standard_policy.json
+  policy   = data.aws_iam_policy_document.group_policies[each.key].json
 }
+
 
 data "aws_iam_policy_document" "mfa_policy" {
   statement {

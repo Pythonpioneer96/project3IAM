@@ -18,6 +18,6 @@ group_users = {
 group_policies = {
   "Revans_Rule"   = ["*"]
   "Maglus_Rule"   = ["ec2:RunInstances", "ec2:TerminateInstances", "ec2:StopInstances", "ec2:StartInstances"]
-  "Sidious_Rule"  = ["ec2:ModifySnapshotAttribute"]
-  "Banes_Rule"    = ["ec2:*"]
+  "Sidious_Rule"  = ["ec2:ModifySnapshotAttribute", "cognito-idp:*", "cognito-sync:*"]
+  "Banes_Rule"    = ["ec2:Describe*", "s3:Get*", "s3:List*"] 
 }

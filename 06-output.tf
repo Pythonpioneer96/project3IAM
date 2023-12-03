@@ -15,13 +15,12 @@ output "aws_iam_group_descriptions" {
 }
 
 output "aws_iam_group_policy_ids" {
-  value = { for k, v in aws_iam_group_policy.standard_policy : k => v.id }
+  value = { for k, v in aws_iam_group_policy.group_specific_policy : k => v.id }
 }
 
 output "aws_iam_group_policy_groups" {
-  value = { for k, v in aws_iam_group_policy.standard_policy : k => v.group }
+  value = { for k, v in aws_iam_group_policy.group_specific_policy : k => v.group }
 }
-
 
 output "group_membership_details" {
   value = { for k, v in aws_iam_group_membership.group_membership : k => { "group" = v.group, "users" = v.users } }
