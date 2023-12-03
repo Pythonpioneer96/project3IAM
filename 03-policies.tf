@@ -1,4 +1,3 @@
-# For each group, create a policy document
 data "aws_iam_policy_document" "group_policies" {
   for_each = var.group_policies
 
