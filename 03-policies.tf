@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "mfa_policy" {
     }
   }
 }
-
+# if mfa enabled group is in the iam group give that iam group the mfa policy
 resource "aws_iam_group_policy" "mfa_policy" {
   for_each = { for k in var.mfa_enabled_groups : k => var.iam_groups[k] if contains(keys(var.iam_groups), k) }
   name     = "${each.key}-mfa-policy"
