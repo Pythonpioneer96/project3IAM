@@ -7,7 +7,7 @@ data "aws_iam_policy_document" "group_policies" {
     resources = ["*"]
   }
 }
-
+# attaching policies to each group
 resource "aws_iam_group_policy" "group_specific_policy" {
   for_each = var.group_policies
   name     = "${each.key}-policy"
