@@ -1,6 +1,6 @@
 data "aws_iam_policy_document" "group_policies" {
   for_each = var.group_policies
-
+# allowing actions on any resource for each policy, actions defined by values inside group policies map data structure
   statement {
     effect    = "Allow"
     actions   = each.value
